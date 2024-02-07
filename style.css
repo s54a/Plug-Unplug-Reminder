@@ -1,11 +1,19 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
-
 * {
   box-sizing: border-box;
 }
 
+:root {
+  --pcolor: #000;
+  --scolor: #fff;
+}
+
+.light {
+  --pcolor: #fff;
+  --scolor: #000;
+}
+
 body {
-  font-family: "Montserrat", Tahoma, Verdana, Geneva, sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,9 +21,14 @@ body {
   height: 100vh;
   overflow: hidden;
   margin: 0;
-  background-color: #000;
-  color: #fff;
+  background-color: var(--pcolor);
+  color: var(--scolor);
+  transition: 500ms ease-in-out;
 }
 .percent {
   font-size: 3rem;
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }

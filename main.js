@@ -20,7 +20,7 @@ const batteryIcon =
 
 function main() {
   navigator.getBattery().then(function (battery) {
-    const batteryLevel = battery.level * 100;
+    const batteryLevel = Math.round(battery.level * 100);
     percent.innerText = batteryLevel + "%";
     const chargingInfo = battery.charging ? true : false;
 
@@ -44,8 +44,8 @@ function main() {
           setInterval(() => {
             favicon.href = batteryIcon;
           }, 5000);
-        } else if (batteryLevel >= 20 && batteryLevel <= 80) {
-          percent.innerHTML = batteryLevel + "%" + " 😊";
+        } else if (batteryLevel > 20 && batteryLevel < 80) {
+          percent.innerHTML = batteryLevel + "%";
         }
       } else if (permission === "denied") {
         percent.innerText = "Permission to Send Notification Denied";
@@ -60,11 +60,17 @@ if ("getBattery" in navigator) {
   console.log(
     "Battery Status API is Not Supported in this Browser or your Machine."
   );
+  alert("Battery Status API is Not Supported in this Browser or your Machine.");
 }
 
 setInterval(() => {
   main();
 }, 60000);
+
+percent.addEventListener("click", () => {
+  document.body.classList.toggle("light");
+});
+
 // MDN Example of Notification Api
 // function notifyMe() {
 //   if (!("Notification" in window)) {
