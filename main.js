@@ -1,8 +1,5 @@
 import "./style.css";
 
-const percent = document.querySelector(".percent");
-const favicon = document.querySelector("#favicon");
-
 const unplugIcon =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACcklEQVR4nN3YsWsTURzA8YeG6KBQt2Sxyx1i4bJIsuYPEBNH/QfE/8DxBd/SUtFCb6w4SDJUF4uGgkNyalILXYRCMukoLg205AaXn6TpNTnu7t0vud+7vPjgt5XH99O7hF/LWEqneDCslb67ED7Ddabzkce7KMTt+19v5R92njA9410pYrXaWslXOof5ahdylS790zLFoGaKk/Vk8W4oYjreG1LEOH4A45kg5ot3fYiweFKEP36CSBbvnk/ROd3KVzpHYfGX8+BblTh+PNbb00TxpYu5u/UrMj5X7b5mHK6Qx1Mj7mz+pI0vc8gYYvApDjCaQuOM/EnkksR7Z41D1hSDDxgE5euUo4hfJKJ4MNwgiV8kokS9dvwXCNu2bzza/PJ7KRGwu5aFhrX3t34Pnr78CEuFgKZxDeqFJjQKMJpFIFjS37wXvygEo4yfRjx+0f6TBoJ5Z9vp1WynF/tOQaucmX5tQqdeaO7sbNxM49uJTeL7MB4Eom49iwZY+/Bm9XpaX7HMH58UMYn3jmoEC8bPiwjGp4DgEsAsiOh4hQh+frEcgES0ypm4nyFG8MtL4wE4BPYQILjvQtvpNTGI0Yddg92JBy7jx8fZbae/l9aTSLA78chL00Ik2Z3MkP87BRCvPv8AVQiK3cmMQ4j3bVCBoNydTBlCvGsBNYJ6dzKen3A5QAWCaHcyZPE+QGoIC707xcYHAMoR+N3JwMSHApQh8LuTgY2PBCj6YKOCduEqOl4KUIBQcoQMsAwIEQfQHSEwAJ0RAgvQFSFmAeiIELMCdEOIeQA6IcS8AJ0QSQ76L7t2H78eaIfQOZ5dnEiEgvh/O+L2fhcunmAAAAAASUVORK5CYII=";
 
@@ -17,6 +14,15 @@ const batteryLow =
 
 const batteryIcon =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACtUlEQVR4nO2ZPW8TQRCGr+I/oDSQkki2bxekgGSg5UNKBYEyDQ0JYGIlARtnjyIBKb8EChzsmBiSHHgvZWQkQGmMFMiHxFcPDYNmOZ99seM7I995HDzSFG7O77Pzzs7trab1ox90gq8bl7gUO9wyoFkyaWyflMYFjWowaWwfJN6BsMRnjWpwD/HV1KgG7wWAE+9njzApHnNL7PkV7JnS2GWW8QifHTgA/lHHhFv7U8wHDtDRlbcaAPZCAAhKvBFOf/yfAFL0KIAUoK+mQX+ZAn0lBezNbG8B6KtpiC5Nw6nFOxBZTCoIr2poVADY6wzEivchnpuAL5VBuPzihvrNS70AIIVabVz1XPk0/NoaAJ5NKCv1RAV0tE5+GibWrsHvT0fh3eaQbaE0/R5gtnXO5sbha2VQATzZiEM0PwX62gPiALJmnaXysBKPacgRiBVmFBxpAN22zi3bOtUcLY5BbPkesBLhbZTVWefbx+OO+HYamHcNoM46y29r1nE18KtULXGomRk6AFXr3DZHXeKrDRx5NunObFJVizWZzKEDoAgUcy4/Dt/rrNMqF9YvqgnNmlQhfAAzo8SgKD/iERJhyVUgkk02WOXpRrwBYNK8ouyGtuNUegCrgI1Z36jYuB82h1ziC+Vhp6EP2pG0bgA07Ei4ZWYT8HNrwBH/o3IMzudu/p0HLQaa1m0AHFYo8npxzLX6d82rLa3DyQDgQCvMwEM54ojHN1Iv63AqAPjCFs1NOQ2M1lG7jod1OBmAlbSrgRM+rcNJAOxr4OflM76PkpwEQEmomYDHRzxG4nFSDSwf1uFkKmDPADzI44T2ax1OAsCezGqo4acUFN/GNyFOAaC+Gu0I5+QA/jG1PsChr4A0dgMDkGIneABLzAdYgbnAAfAeS0F0shJS3S3PhXJH1o9+HLL4A6hD/d762AytAAAAAElFTkSuQmCC";
+
+const percent = document.querySelector(".percent");
+const favicon = document.querySelector("#favicon");
+
+favicon.href = batteryIcon;
+
+percent.addEventListener("click", () => {
+  document.body.classList.toggle("light");
+});
 
 function main() {
   navigator.getBattery().then(function (battery) {
@@ -66,10 +72,6 @@ if ("getBattery" in navigator) {
 setInterval(() => {
   main();
 }, 60000);
-
-percent.addEventListener("click", () => {
-  document.body.classList.toggle("light");
-});
 
 // MDN Example of Notification Api
 // function notifyMe() {
